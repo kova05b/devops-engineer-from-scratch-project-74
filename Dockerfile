@@ -9,4 +9,4 @@ COPY app/ ./
 
 EXPOSE 8080
 
-CMD ["make", "start"]
+CMD ["make", "test"]

@@ -43,8 +43,35 @@ make test
 make down
 ```
 
+### Структура Compose (задание 2)
+- `docker-compose.yml` — базовый файл: сервис **`app`**, том `./app:/app`, команда по умолчанию **`make test`** (используется вместе с флагом `-f docker-compose.yml`, чтобы не подмешивался override).
+- `docker-compose.override.yml` — локальная разработка: **`make dev`**, порт **`8080`**. Обычный **`docker compose up`** подмешивает override и поднимает приложение для разработки.
+
+Тесты только из базового файла (override не используется):
+
+```bash
+docker compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
+```
+
+Или через Makefile:
+
+```bash
+make test-up
+```
+
+Локальный dev с подмешиванием override:
+
+```bash
+make dev
+```
+
+Откройте в браузере **http://localhost:8080**.
+
+Примечание: в актуальных Docker CLI команда выглядит как `docker compose`; классический бинарь `docker-compose` при наличии тоже подходит (версия не ниже **1.27.0**). При необходимости переопределите переменную `DOCKER_COMPOSE`, например: `make test-up DOCKER_COMPOSE=docker-compose`.
+
 ### Что используется
-- `docker-compose.yml` для локального окружения
+- `docker-compose.yml` и `docker-compose.override.yml`
+- `.dockerignore` в корне (исключает `node_modules` из контекста сборки)
 - `Dockerfile` для сборки образа приложения
 - `Makefile` для автоматизации команд
 - `.github/workflows/ci.yml` для CI (lint + test)

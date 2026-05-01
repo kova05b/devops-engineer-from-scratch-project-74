@@ -1,6 +1,6 @@
-DOCKER_COMPOSE = docker compose
+DOCKER_COMPOSE ?= docker compose
 
-.PHONY: setup dev down lint test ci build
+.PHONY: setup dev down lint test test-up ci build
 
 setup:
 	$(DOCKER_COMPOSE) run --rm app sh -lc "make prepare-env && make setup"
@@ -16,6 +16,9 @@ lint:
 
 test:
 	$(DOCKER_COMPOSE) run --rm app make test
+
+test-up:
+	$(DOCKER_COMPOSE) -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
 
 ci: lint test
 
