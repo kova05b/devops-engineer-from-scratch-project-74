@@ -67,7 +67,9 @@ make test-up
 make dev
 ```
 
-Откройте в браузере **http://localhost:8080**.
+Откройте в браузере **http://localhost:8080** (напрямую до приложения).
+
+С **Caddy** в override (задание 5): **`docker compose up`** — затем **https://localhost** (или **http://localhost**, будет редирект на HTTPS). Браузер запросит доверие к самоподписному сертификату (**tls internal**).
 
 ### Production-образ и Docker Hub (задание 3)
 1. Создайте на [hub.docker.com](https://hub.docker.com) репозиторий с тем же имени, что и GitHub-репозиторий (`имя_пользователя_hub/devops-engineer-from-scratch-project-74`).
@@ -96,7 +98,7 @@ docker run -p 8080:8080 -e NODE_ENV=development <ваш образ из Docker H
 Примечание: в актуальных Docker CLI используется **`docker compose`**; классический **`docker-compose`** тоже подходит (версия не ниже **1.27.0**). Переопределение: `make push DOCKER_COMPOSE=docker-compose`.
 
 ### Что используется
-- `docker-compose.yml` и `docker-compose.override.yml`
+- `docker-compose.yml` и `docker-compose.override.yml` (в том числе сервис **caddy**, конфиг **`services/caddy/Caddyfile`**, порты **80/443**)
 - `Dockerfile` (dev) и `Dockerfile.production` (тесты в базовом compose и образ для Hub)
 - `.dockerignore` в корне (исключает `node_modules` из контекста сборки)
 - `Makefile` для автоматизации команд
