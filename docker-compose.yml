@@ -1,0 +1,15 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${DOCKER_IMAGE:-js-fastify-blog}:latest
+    working_dir: /app
+    command: make dev
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./app:/app
+    user: "${UID:-1000}:${GID:-1000}"
+    tty: true
+    stdin_open: true
