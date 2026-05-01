@@ -89,8 +89,8 @@ make dev
 2. Войдите локально: `docker login`
 3. В **`docker-compose.yml`** имя образа задаётся как **`${DOCKER_IMAGE:-ruslangilyazov/devops-engineer-from-scratch-project-74:latest}`**. Если логин на Docker Hub другой — задайте переменную **`DOCKER_IMAGE`**, например:
 
-```bash
-set DOCKER_IMAGE=myhublogin/devops-engineer-from-scratch-project-74:latest
+```powershell
+$env:DOCKER_IMAGE="myhublogin/devops-engineer-from-scratch-project-74:latest"
 make build
 make push
 ```
