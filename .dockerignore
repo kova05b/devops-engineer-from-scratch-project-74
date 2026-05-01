@@ -1,2 +1,17 @@
+# Зависимости собираются внутри образа
 node_modules
 app/node_modules
+
+# Контекст сборки — только приложение в app/; лишнее не отправлять демону
+.git
+.github
+services
+docker-compose.yml
+docker-compose.override.yml
+Makefile
+README.md
+
+# Локальные артефакты приложения (если есть на хосте)
+app/database.sqlite
+app/database.test.sqlite
+app/dist

@@ -6,5 +6,11 @@
 Thumbs.db
 desktop.ini
 
+.idea/
+.vscode/
+
 # На случай установки зависимостей в корне репозитория
 /node_modules/
+
+# SQLite и прочие локальные артефакты (подробнее см. app/.gitignore)
+*.sqlite
