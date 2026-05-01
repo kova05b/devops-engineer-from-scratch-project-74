@@ -2,9 +2,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
-    image: ${DOCKER_IMAGE:-js-fastify-blog}:latest
+      dockerfile: Dockerfile.production
+    image: ${DOCKER_IMAGE:-ruslangilyazov/devops-engineer-from-scratch-project-74:latest}
     working_dir: /app
     command: make test
-    volumes:
-      - ./app:/app

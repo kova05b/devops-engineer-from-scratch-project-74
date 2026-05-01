@@ -1,0 +1,25 @@
+FROM node:20.12.2
+
+WORKDIR /app
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends make \
+    && rm -rf /var/lib/apt/lists/*
+
+# Важно для кеширования слоёв
+COPY app/package.json package.json
+COPY app/package-lock.json package-lock.json
+
+RUN npm ci
+
+COPY app/. .
+
+RUN cp .env.example .env
+
+EXPOSE 8080
+
+ENV NODE_ENV=production
+
+RUN make build
+
+CMD make start
