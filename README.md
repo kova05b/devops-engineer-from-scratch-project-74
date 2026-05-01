@@ -1,6 +1,8 @@
 ### Hexlet tests and linter status
 [![Actions Status](https://github.com/kova05b/devops-engineer-from-scratch-project-74/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/kova05b/devops-engineer-from-scratch-project-74/actions)
 
+[![Push workflow](https://github.com/kova05b/devops-engineer-from-scratch-project-74/actions/workflows/push.yml/badge.svg)](https://github.com/kova05b/devops-engineer-from-scratch-project-74/actions/workflows/push.yml)
+
 ## JS Fastify Blog in Docker Compose
 
 Проект упакован в Docker и запускается локально через Docker Compose.
@@ -98,4 +100,4 @@ docker run -p 8080:8080 -e NODE_ENV=development <ваш образ из Docker H
 - `Dockerfile` (dev) и `Dockerfile.production` (тесты в базовом compose и образ для Hub)
 - `.dockerignore` в корне (исключает `node_modules` из контекста сборки)
 - `Makefile` для автоматизации команд
-- `.github/workflows/ci.yml` для CI (lint + test на production-образе)
+- `.github/workflows/push.yml` — CI на push: линт и тесты через Compose, сборка production-образа, push на Docker Hub (**только ветка `main`**, нужны секреты репозитория `DOCKER_HUB_USERNAME` и `DOCKER_HUB_TOKEN`)

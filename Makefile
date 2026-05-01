@@ -20,6 +20,7 @@ test:
 test-up:
 	$(DOCKER_COMPOSE) -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
 
+# CI: проверки через Docker Compose и Dockerfile.production (см. docker-compose.yml -f)
 ci: lint test
 
 build:
