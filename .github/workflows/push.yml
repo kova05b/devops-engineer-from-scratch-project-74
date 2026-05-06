@@ -19,7 +19,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Build production image
-        run: docker compose -f docker-compose.yml build app
+        run: docker build -f Dockerfile.production -t "$DOCKER_IMAGE" .
 
       - name: Run CI (Docker Compose — lint и тесты)
         run: make ci

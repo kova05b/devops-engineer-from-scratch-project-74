@@ -1,4 +1,5 @@
 DOCKER_COMPOSE ?= docker compose
+DOCKER_IMAGE ?= ruslangilyazov/devops-engineer-from-scratch-project-74:latest
 
 .PHONY: setup dev down lint test test-up ci build push
 
@@ -24,7 +25,7 @@ test-up:
 ci: lint test
 
 build:
-	$(DOCKER_COMPOSE) -f docker-compose.yml build app
+	docker build -f Dockerfile.production -t $(DOCKER_IMAGE) .
 
 push:
-	$(DOCKER_COMPOSE) -f docker-compose.yml push app
+	docker push $(DOCKER_IMAGE)

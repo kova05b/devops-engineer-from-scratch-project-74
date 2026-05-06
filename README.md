@@ -59,7 +59,7 @@ make down
 ```
 
 ### Структура Compose
-- **`docker-compose.yml`** — CI и продакшен-сборка: **`Dockerfile.production`**, сервис **`db`** (PostgreSQL), сервис **`app`** без проброса портов наружу; образ **`${DOCKER_IMAGE:-ruslangilyazov/devops-engineer-from-scratch-project-74:latest}`**, команда **`make test`**.
+- **`docker-compose.yml`** — CI/production-конфигурация: сервис **`db`** (PostgreSQL), сервис **`app`** без проброса портов наружу; используется готовый образ **`${DOCKER_IMAGE:-ruslangilyazov/devops-engineer-from-scratch-project-74:latest}`**, команда **`make test`**.
 - **`docker-compose.override.yml`** — локальная разработка: **`Dockerfile`**, том **`./app:/app`**, **`make dev`**, порт приложения **8080**, опционально **Caddy** (80/443).
 
 Тесты без подмешивания override (как в задании):
@@ -98,8 +98,8 @@ make push
 Сборка и отправка (эквивалент команд из задания):
 
 ```bash
-docker compose -f docker-compose.yml build app
-docker compose -f docker-compose.yml push app
+docker build -f Dockerfile.production -t ruslangilyazov/devops-engineer-from-scratch-project-74:latest .
+docker push ruslangilyazov/devops-engineer-from-scratch-project-74:latest
 ```
 
 Проверка запуска из образа с Docker Hub:

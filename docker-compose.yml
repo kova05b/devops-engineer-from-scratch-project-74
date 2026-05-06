@@ -12,9 +12,6 @@ services:
       retries: 5
 
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile.production
     image: ${DOCKER_IMAGE:-ruslangilyazov/devops-engineer-from-scratch-project-74:latest}
     working_dir: /app
     command: make test
